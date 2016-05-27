@@ -26,7 +26,14 @@ public class ProductsDAOImpl implements ProductsDAO {
 		
 	}
 	public void edit(Products products) {
-		session.getCurrentSession().update(products);
+		System.out.println(products.getProductId());
+		Session s=session.openSession();
+		Transaction t=s.beginTransaction();
+		Products pd=(Products)s.get(Products.class, new Integer(products.getProductId()));
+		s.saveOrUpdate(pd);
+		s.flush();
+		t.commit();
+		s.close();
 	}
 	public void delete(int productId) {
 		Session s=session.openSession();

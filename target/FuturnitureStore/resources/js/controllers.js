@@ -14,7 +14,7 @@ cartApp.controller('cartController', function($scope, $http){
 			};
 			
 			$scope.clearCart = function() {
-				$http.delete('/FuturnitureStore/rest/cart/'+$scope.cartId)
+				$http.post('/FuturnitureStore/rest/cart/'+$scope.cartId)
 				 .success($scope.refreshCart($scope.cartId));
 			};
 				  

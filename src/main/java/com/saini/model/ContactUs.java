@@ -15,6 +15,8 @@ public class ContactUs implements Serializable{
 	@Column
 	@GeneratedValue
 	private int id;
+	private String name,subject,email,message,company;
+	private long mobile;
 	public int getId() {
 		return id;
 	}
@@ -60,7 +62,6 @@ public class ContactUs implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	private String name,subject,email,message,company;
-	private long mobile;
+	
 
 }

@@ -1,5 +1,10 @@
+<%@page import="com.saini.service.ProductsService"%>
+<%@page import="com.saini.model.Products"%>
 <%@ include file="header.jsp" %>
-
+<%
+     
+    
+%>
 
 	<section class="container" data-ng-app="cartApp">
 		<div data-ng-controller="cartController" data-ng-init="initCartId('${cartId}')">
@@ -12,7 +17,10 @@
 				 <a href="customerRegistration" class="btn btn-success pull-right"> Check out
 				
 				</a></c:if>
+				<script>
 				$scope.location = myService.get();
+				</script>
+				
 			</div>
 			<table class="table table-hover">
 				<tr>
@@ -23,7 +31,7 @@
 					<th>Action</th>
 				</tr>
 				<tr data-ng-repeat="item in product">
-					<td>{{item.productId}}-{{item.name}}</td>
+					<td>${p.productId}</td>
 					<td>{{item.quantity}}</td>
 					<td>{{item.price}}</td>
 					<td>{{item.price}}</td>

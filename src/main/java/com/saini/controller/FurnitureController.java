@@ -14,6 +14,9 @@ import javax.validation.Valid;
 import com.saini.model.*;
 import com.saini.service.ProductsService;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FurnitureController {
 
+	private SessionFactory session;
 	@Autowired
 	private ProductsService productsService;
 	
@@ -38,11 +42,7 @@ public class FurnitureController {
 		return new ModelAndView("index");
 	}
 
-	@RequestMapping(value = "/contact")
-	public ModelAndView contactPage() {
-		return new ModelAndView("contactPage");
-	}
-
+	
 	@RequestMapping(value = "/login")
 	public ModelAndView loginPage(@RequestParam(value="error", required = false)
 	String error,@RequestParam(value="logout", required = false)String logout,Model model) {
@@ -189,24 +189,41 @@ public class FurnitureController {
 	  return "redirect:products";
 	 }
 	
-	@ModelAttribute("edit")
-	public Products sayHello()
-	{
-		return new Products();	
-	}
-	@RequestMapping(value="/editProduct",method=RequestMethod.GET)
-	public String editProductById(@RequestParam("productId") Products p, Model model){		
-		productsService.add(p);
-		model.addAttribute("product",p);
+	@RequestMapping("/editProduct")
+	public String editProductById(@RequestParam("productId") int productId, Model model){
+		Products p = productsService.getProduct(productId);
+		model.addAttribute("product", p);
 		return "editProduct";
 	}
+	
+	/*
+	@RequestMapping(value="/editProducts",method=RequestMethod.POST)
+	public ModelAndView editProduct(@ModelAttribute("products")
+	Products p, BindingResult result)
+	{
+		
+		Session s=session.openSession();
+		Transaction t=s.beginTransaction();
+		Products pd=(Products)s.get(Products.class, new Integer(p.getProductId()));
+		s.update(pd);
+		s.flush();
+		t.commit();
+		s.close();
+		//productsService.edit(p);
+		 return new ModelAndView("index");
+		
+	}
+	*/
+	
 	 
-	 @RequestMapping(value="/admin/editProcess", method=RequestMethod.POST)
-	    public ModelAndView edditingTeam(@ModelAttribute Products product, @PathVariable Integer id) {
-	         
-	        ModelAndView modelAndView = new ModelAndView("products");
-	         product=new Products();
-	        productsService.edit(product);    
-	        return modelAndView;
-	    }
+	@RequestMapping(value="/editProducts/{productId}", method=RequestMethod.POST)
+	public String editProduct(@PathVariable("productId")Integer productId,
+	        @ModelAttribute("products") Products product, Map model){
+	 
+	    productsService.edit(product);
+	    List productList=productsService.getAllProducts();
+	    model.put("productList", productList);
+	 
+	    return "index";
+	}
 }

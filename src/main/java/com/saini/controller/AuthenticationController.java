@@ -5,11 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.saini.model.Cart;
+import com.saini.model.ContactUs;
 import com.saini.model.User_Authentication;
 import com.saini.model.User_Authorization;
-import com.saini.service.CartService;
+import com.saini.service.ContactUsService;
 import com.saini.service.User_AuthenticationService;
 import com.saini.service.User_AuthorizationService;
 
@@ -18,7 +19,9 @@ public class AuthenticationController {
 
 	@Autowired
 	private User_AuthenticationService service;
-    private CartService cartService;
+  
+	@Autowired
+	private ContactUsService contactService;
 	
 	@RequestMapping("/signUp")
 	
@@ -43,36 +46,24 @@ public class AuthenticationController {
 		return "index";
 	}
 	
-	
-	@RequestMapping("/customerRegistration")
-	 public String customerRegisterPage() {
-	      return "customerRegistration";
-	   }
-	@ModelAttribute("instCustomer")
-	
-	@RequestMapping("/addCustomer")
-	public String addNewCustomer(@ModelAttribute("instCustomer") Cart cart , BindingResult result)
+	@RequestMapping(value = "/contact")
+	public ModelAndView contactPage() {
+		
+		
+		return new ModelAndView("contactPage");
+	}
+
+	@ModelAttribute("contact")
+	public ContactUs contact()
 	{
-	   cart=new Cart();
-	   cart.setUserid(1);
-	   cart.setActive(true);
-	   cartService.addCart(cart);
-	/*
-	   User_Authentication userAuth=new User_Authentication();
-	   userAuth.setUserid(cart.getUserid());
-	   userAuth.setUsername(cart.getUsername());
-	   userAuth.setPassword(cart.getPassword());
-	   userAuth.setMobile(cart.getMobile());
-	   userAuth.setActive(true);
-	   userAuth.setEmail(cart.getEmail());
-	   
-	   User_Authorization roleAuth=new User_Authorization();
-	   roleAuth.setRole("ROLE_USER");
-	   roleAuth.setUserid(cart.getUserid());
-	   service.addUser(userAuth);
-	   service.addRole(roleAuth);
-	   */
-	  
-		return "index";
+		return new ContactUs();
+	}
+	@RequestMapping("/addContact")
+	public String addContact(@ModelAttribute("contact") ContactUs contact , BindingResult result)
+	{
+		contactService.contactUs(contact);
+	
+		return "contactPage";
+		
 	}
 }
