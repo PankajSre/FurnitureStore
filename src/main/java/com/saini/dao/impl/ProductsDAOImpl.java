@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.persistence.PersistenceContext;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +29,13 @@ public class ProductsDAOImpl implements ProductsDAO {
 		session.getCurrentSession().update(products);
 	}
 	public void delete(int productId) {
-		session.getCurrentSession().delete(productId);
+		Session s=session.openSession();
+		Transaction t=s.beginTransaction();
+		Products pd=(Products)s.get(Products.class, new Integer(productId));
+		s.delete(pd);
+		s.flush();
+		t.commit();
+		s.close();
 		
 	}
 	public Products getProduct(int productId) {

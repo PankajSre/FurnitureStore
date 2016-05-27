@@ -49,8 +49,8 @@
                             <img class="img-responsive" src="resources/images/products/secong.jpg" alt="">
                             <div class="overlay">
                                 <div class="recent-work-inner">
-                                    <h3><a href="products?Loyal">Loyal test</a></h3>
-                                    <p>It has a special feature whic will make yoy happy and relaxed</p>
+                                    <h3><a href="products?item=Loyal">Loyal test</a></h3>
+                                    <p>It has a special feature which will make yoy happy and relaxed</p>
                                     <a class="preview" href="resources/images/products/secong.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                                 </div> 
                             </div>
@@ -62,7 +62,7 @@
                             <img class="img-responsive" src="resources/images/products/third.jpg" alt="">
                             <div class="overlay">
                                 <div class="recent-work-inner">
-                                    <h3><a href="products?Books">Books Rack</a></h3>
+                                    <h3><a href="products?item=Books">Books Rack</a></h3>
                                     <p>Here You can put your all books and can access very easily</p>
                                     <a class="preview" href="resources/images/products/third.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                                 </div> 
@@ -75,7 +75,7 @@
                             <img class="img-responsive" src="resources/images/products/sofa.jpg" alt="">
                             <div class="overlay">
                                 <div class="recent-work-inner">
-                                    <h3><a href="products?Indian">Indian Sofa</a></h3>
+                                    <h3><a href="products?item=Indian">Indian Sofa</a></h3>
                                     <p>This gives the comfortable state to a person</p>
                                     <a class="preview" href="resources/images/products/sofa.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                                 </div> 
@@ -88,7 +88,7 @@
                             <img class="img-responsive" src="resources/images/products/rack.jpg" alt="">
                             <div class="overlay">
                                 <div class="recent-work-inner">
-                                    <h3><a href="products?Multi">Multi Purpose</a></h3>
+                                    <h3><a href="products?item=Multi">Multi Purpose</a></h3>
                                     <p>This is a kind of rack whic is used for many purposes</p>
                                     <a class="preview" href="resources/images/products/rack.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                                 </div> 
@@ -101,7 +101,7 @@
                             <img class="img-responsive" src="resources/images/products/double.jpg" alt="">
                             <div class="overlay">
                                 <div class="recent-work-inner">
-                                    <h3><a href="products?Double">Double Chair</a></h3>
+                                    <h3><a href="products?item=Double">Double Chair</a></h3>
                                     <p>This can give you immense pleasure of beeing in a cool state</p>
                                     <a class="preview" href="resources/images/products/double.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
                                 </div> 

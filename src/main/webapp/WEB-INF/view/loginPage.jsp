@@ -58,12 +58,17 @@ li,ul,body,input{margin:0; padding:0; list-style:none}
 <div class="section-out">
 <section class="login-section">
 
+            <c:if test="${not empty error}">
+                    <div class="error" style="color: #ff0000;">${error}</div>
+                </c:if>
 <div class="login">
 <form name="login" action="perform_login" method="post" >
+ 
 <ul class="ul-list">
-<li><input type="text" name="username" required class="input" placeholder="Your username"/><span class="icon"><i class="fa fa-user"></i></span></li>
+<li><input type="text" name="username" required class="input" placeholder="Your username"/><span class="icon"><i class="fa fa-user"></i></span></li><form:errors path="username" cssClass="error" />
 <li><input type="password" name="password" required class="input" placeholder="Password"/><span class="icon"><i class="fa fa-lock"></i></span></li>
 <li><input type="submit" value="SIGN IN" class="btn"></li>
+<li><input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/></li>
 </ul>
 </form>
 </div>

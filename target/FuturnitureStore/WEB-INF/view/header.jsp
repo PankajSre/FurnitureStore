@@ -14,18 +14,28 @@
     <title>Furniture Store Online</title>
     
     <!-- core CSS -->
-    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resources/css/font-awesome.min.css" rel="stylesheet">
-    <link href="resources/css/prettyPhoto.css" rel="stylesheet">
-    <link href="resources/css/animate.min.css" rel="stylesheet">
-    <link href="resources/css/main.css" rel="stylesheet">
-    <link href="resources/css/responsive.css" rel="stylesheet">
-     <script src="resources/js/jquery.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/jquery.prettyPhoto.js"></script>
-    <script src="resources/js/jquery.isotope.min.js"></script>
-    <script src="resources/js/main.js"></script>
-    <script src="resources/js/wow.min.js"></script>
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/prettyPhoto.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/animate.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet">
+     <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.prettyPhoto.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.isotope.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/wow.min.js"></script>
+    <script src='${pageContext.request.contextPath}/<c:url value="/resource/js/controllers.js" />'></script>
+    <script src="${pageContext.request.contextPath}/resource/js/scripts.js"></script>
+    <script src='<c:url value="${pageContext.request.contextPath}/resource/js/controllers.js" />'></script>
+<script src='<c:url value="${pageContext.request.contextPath}/resource/js/scripts.js" />'></script>
+    <script>
+ function formSubmit()
+ {
+    document.getElementById("logout").submit();
+		 }
+    </script>
 </head><!--/head-->
 
 <body>
@@ -63,15 +73,16 @@
                 </div>
                 <c:url value="/perform_logout" var="logout" />
                 <form action="${logout}" method="post" id="logout">
-                  <input type="hidden" name="${_csrf.parameterName}" value="${_crsf.token}" /> 
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
                 
                  <div class="collapse navbar-collapse navbar">
                     <ul class="nav navbar-nav">
-                       <li><a href="index">Home</a></li>
-                        <li><a href="about">About Us</a></li>
+                       <li><a href="${pageContext.request.contextPath}/index">Home</a></li>
+                        <li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
                        <li><a href="${pageContext.request.contextPath}/products">All Products</a>
-                      <li><a href="${pageContext.request.contextPath}/admin/prodRegistration">Add New Products</a></li>
+                     <c:if test="${pageContext.request.userPrincipal.name == 'Krishna'}">
+                      <li><a href="${pageContext.request.contextPath}/prodRegistration">Add New Products</a></li></c:if>
 						 <li><a href="contact">Contact Us</a></li>
 						</ul>
                        
@@ -92,10 +103,10 @@
 					</c:if>
 					<c:if 
 					   test="${pageContext.request.userPrincipal.name==null}">
-					 <li><a href="login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li> 
-					   
+					 <li><a href="${pageContext.request.contextPath}/login"><span class="glyphicon glyphicon-log-in"></span>Login</a></li> 
+					  <li><a href="${pageContext.request.contextPath}/signUp"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li> 
 					</c:if>
-					<li><a href="signUp"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+					
 					
 					<li></li>
 					

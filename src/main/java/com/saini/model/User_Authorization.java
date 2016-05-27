@@ -2,11 +2,19 @@ package com.saini.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class User_Authorization {
 
+	@Id
+	@Column
+	@GeneratedValue
+	private int user_role_id;
+	@Column
+	private String role="ROLE_USER";
 	@Column
 	private int userid;
 	public int getUserid() {
@@ -27,10 +35,6 @@ public class User_Authorization {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	@Id
-	@Column
-	private int user_role_id;
-	@Column
-	private String role;
+	
 	
 }

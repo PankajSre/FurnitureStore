@@ -54,13 +54,13 @@ li,ul,body,input{margin:0; padding:0; list-style:none}
 <div class="section-out">
 <section class="login-section">
 <div class="login">
-<form:form method="Post" action="index" commandName="register">
+<form:form method="Post" action="adduser" commandName="instuser">
 <ul class="ul-list">
-<li><input type="text" required class="input" placeholder="Enter Name"/><span class="icon"><i class="fa fa-user"></i></span></li>
-<li><input type="email" required class="input" placeholder="Your Email"/><span class="icon"><i class="fa fa-user"></i></span></li>
-<li><input type="password" required class="input" placeholder="Password"/><span class="icon"><i class="fa fa-lock"></i></span></li>
-<li><input type="number" required class="input" placeholder="Mobile Number"/><span class="icon"><i class="fa fa-lock"></i></span></li>
-
+<li><input type="text" required name="username" class="input" placeholder="Username"/><span class="icon"><i class="fa fa-lock"></i></span></li>
+<li><input type="password" required name="password" class="input" placeholder="Password"/><span class="icon"><i class="fa fa-lock"></i></span></li>
+<li><input type="email" required name="email" class="input" placeholder="Your Email"/><span class="icon"><i class="fa fa-user"></i></span></li>
+<li><input type="number" required name="mobile" class="input" placeholder="Mobile Number"/><span class="icon"><i class="fa fa-lock"></i></span></li>
+<li><input type="text" required name="address" class="input" placeholder="Address"/><span class="icon"><i class="fa fa-user"></i></span></li>
 
 <li><input type="submit" value="SIGN UP" class="btn"></li>
 </ul>

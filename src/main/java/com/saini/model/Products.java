@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity(name="Products")
 public class Products implements Serializable{
@@ -18,17 +21,7 @@ public class Products implements Serializable{
 	public Products() {
 		// TODO Auto-generated constructor stub
 	}
-	public Products(int productId, String groupName, String name,
-			double price, int quantity, String description, String imagePath) {
-		super();
-		this.productId = productId;
-		this.groupName = groupName;
-		this.name = name;
-		this.price = price;
-		this.quantity = quantity;
-		this.description = description;
-		this.imagePath = imagePath;
-	}
+	
 	
 	@Column
 	private String groupName;
@@ -40,8 +33,15 @@ public class Products implements Serializable{
 	private int quantity;
 	@Column
 	private String description;
-	@Column
-	private String imagePath;
+	
+	@Transient
+	private MultipartFile imagePath;
+	public MultipartFile getImagePath() {
+	return imagePath;
+	}
+	public void setImagePath(MultipartFile imagePath) {
+	this.imagePath = imagePath;
+	}
 	public int getProductId() {
 		return productId;
 	}
@@ -78,12 +78,7 @@ public class Products implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getImagePath() {
-		return imagePath;
-	}
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
-	}
+	
 	/*
 	public String toString() {
 		

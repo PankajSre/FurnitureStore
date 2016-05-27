@@ -1,16 +1,14 @@
 <%@ include file="header.jsp" %>
 	<section>
 	 <div align="center">
-        <form:form action="prodRegistration.do" method="get" commandName="prodRegistration">
+        <form:form action="${pageContext.request.contextPath}/admin/prodRegistration" method="POST"  commandName="products" enctype="multipart/form-data">
+           
            <div class="table-responsive">
             <table>
                 <tr>
                     <td colspan="2" align="center"><h2>Product Registration</h2></td>
                 </tr>
-                <tr>
-                    <td>Product Id:</td>
-                    <td><form:input path="productId" id="myId" /></td>
-                </tr>
+               
                 <tr>
                     <td>Group Name:</td>
                     <td><form:input path="groupName" /></td>
@@ -33,17 +31,20 @@
                 </tr>
                 <tr>
                     <td>Product Image:</td>
-                    <td><form:input path="imagePath" /></td>
+                   <td><form:input type="file" path="imagePath" class="btn btn-warning" /></td>
+
+
                 </tr>
                 
                 
             </table>
-            <div style="display: table-footer-group;">
-                    <input type="submit" name="action" value="Add" onclick="/products">
-                     <input type="submit" name="action" value="Edit">
-                     <td> <input type="submit" name="action" value="Delete">
-                      <input type="submit" name="action" value="Search">
             
+            <br>
+            <div style="display: table-footer-group;">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit"  value="Add Product" class="btn btn-info">
+                     
             </div>
             </div>
         </form:form>

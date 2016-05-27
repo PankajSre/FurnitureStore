@@ -1,9 +1,10 @@
 <%@ include file="header.jsp" %>
 	<section class="container" data-ng-app="cartApp" style="height: 430px;">
 
-		<div class="row">
+		<div class="row"  data-ng-app="myApp" data-ng-controller="myCtrl">
 			<div class="col-md-6">
-				<img src="${product.imagePath}" height="150" width=150 />
+		<img src="<c:url value='/resources/${product.productId }.jpg' />" height="200" width="200" />
+
 			</div>
 			<div class="col-md-6">
                 <h2 style="color: blue;">Product Information</h2>
@@ -22,10 +23,10 @@
 				<h4>Rs &nbsp;${product.price}  &nbsp;INR</h4>
 			
 				<p data-ng-controller="cartController">
-					<a href="<spring:url value="/products" />" class="btn btn-success">
-						<span class="glyphicon-circle-arrow-left glyphicon"></span> back
+					<a href="<spring:url value="/products" />" class="btn btn-success">Back
+						
 					</a> 
-					<a href="#" data-ng-click = "addToCart('${product.productId}')" class="btn btn-warning btn-large"> <span
+					<a href="<spring:url value="/cart?productId=${my.productId }" />" data-ng-click = "addToCart('${product.productId}')" class="btn btn-warning btn-large"> <span
 						class="glyphicon-shopping-cart glyphicon"> </span> Order Now
 					</a>
 				</p>
