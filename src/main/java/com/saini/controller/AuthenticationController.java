@@ -43,7 +43,7 @@ public class AuthenticationController {
 	   roleAuth.setUserid(user.getUserid());
 	   
 	   service.addRole(roleAuth);
-		return "login";
+		return "loginPage";
 	}
 	
 	@RequestMapping(value = "/contact")
