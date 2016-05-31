@@ -114,11 +114,17 @@ table tr:nth-child(even) {
 						</c:forEach>
 					</c:if>
 				</table>
-
+                 <c:if test="${pageContext.request.userPrincipal.name == 'Krishna'}">
 				<a href="<spring:url value="/prodRegistration" />"
 					class="btn btn-success"> <span
 					class="glyphicon-info-sign glyphicon"> </span> Add New Product
 				</a>
+				</c:if>
+				<c:if test="${pageContext.request.userPrincipal.name != 'Krishna'}">
+				<a href="<spring:url value="products"  />" onclick="alert('You are not allowed to Enter a product')"
+					class="btn btn-success"> <span 	class="glyphicon-info-sign glyphicon"> </span> Add New Product
+				</a>
+				</c:if>
 			</center>
 		</div>
 	</div>

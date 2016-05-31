@@ -4,7 +4,7 @@ import com.saini.model.Cart;
 
 public interface CartService {
 
-	Cart getCartById(int cartId);
-
-	public void addCart(Cart cart);
+	public void addTocart(Cart cart);
+	public void deleteFromCart(int cartId);
+	public Cart getFromCart(int cartId);
 }

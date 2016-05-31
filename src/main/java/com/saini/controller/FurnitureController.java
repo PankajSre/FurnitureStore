@@ -4,6 +4,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -12,12 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.saini.model.*;
+import com.saini.service.CartService;
 import com.saini.service.ProductsService;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -27,14 +32,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class FurnitureController {
 
-	private SessionFactory session;
+	Path path;
+	static int data=1;
 	@Autowired
 	private ProductsService productsService;
+	
+	@Autowired
+	private CartService cartService;
 	
 	@RequestMapping(value = { "/", "/index" })
 	public ModelAndView indexPage() {
@@ -111,14 +122,19 @@ public class FurnitureController {
 	public Products getLast()
 	{
 		return new Products();
+		
 	}
 	@RequestMapping(value="/admin/prodRegistration",method=RequestMethod.POST)
 	public ModelAndView insertProduct(@ModelAttribute("products")
 	Products p, HttpServletRequest request, BindingResult result)
 	{
+		//productsService.add(product);
+	
+		
+		
 		System.out.println(p.getProductId());
 		ServletContext context=request.getServletContext(); 
-		String path=context.getRealPath("/resources/"+p.getProductId()+".jpg"); 
+		String path=context.getRealPath("/resources/"+data+".jpg"); 
 		System.out.println("Path = "+path); 
 		System.out.println("File name = "+p.getImagePath().getOriginalFilename()); 
 		File f=new File(path); 
@@ -139,7 +155,20 @@ public class FurnitureController {
 			System.out.println(ex.getMessage());
 			}
 			}
-		
+		/*
+		 MultipartFile productImage = product.getImagePath();
+	        String rootDirectory = request.getServletContext().getRealPath("/");
+	         path = Paths.get(rootDirectory + "/WEB-INF/resources/" + product.getProductId() + ".jpg");
+
+	        if(productImage != null && !productImage.isEmpty()){
+	            try {
+	                productImage.transferTo(new File(path.toString()));
+	            } catch (Exception ex){
+	                ex.printStackTrace();
+	                throw new RuntimeException("Product image saving failed", ex);
+	            }
+	        }
+	        */
 	      return new ModelAndView("prodRegistration");
 	
 	}
@@ -196,26 +225,8 @@ public class FurnitureController {
 		return "editProduct";
 	}
 	
-	/*
-	@RequestMapping(value="/editProducts",method=RequestMethod.POST)
-	public ModelAndView editProduct(@ModelAttribute("products")
-	Products p, BindingResult result)
-	{
-		
-		Session s=session.openSession();
-		Transaction t=s.beginTransaction();
-		Products pd=(Products)s.get(Products.class, new Integer(p.getProductId()));
-		s.update(pd);
-		s.flush();
-		t.commit();
-		s.close();
-		//productsService.edit(p);
-		 return new ModelAndView("index");
-		
-	}
-	*/
 	
-	 
+	
 	@RequestMapping(value="/editProducts/{productId}", method=RequestMethod.POST)
 	public String editProduct(@PathVariable("productId")Integer productId,
 	        @ModelAttribute("products") Products product, Map model){
@@ -224,6 +235,48 @@ public class FurnitureController {
 	    List productList=productsService.getAllProducts();
 	    model.put("productList", productList);
 	 
-	    return "index";
+	    return "redirect:/products";
+	}
+	
+	@RequestMapping("/cart")
+	public String getCart(@RequestParam("productId") int productId, Model model){
+		Products p = productsService.getProduct(productId);
+		model.addAttribute("product", p);
+		
+		return "cart";
+	}
+	
+	@RequestMapping("/deleteCart")
+	 public String deleteCart(@RequestParam int productId) {
+		productsService.delete(productId);
+	  return "redirect:cart";
+	 }
+	
+	@RequestMapping("/orderConfirmation")
+	public String setCart(@RequestParam("productId") int productId, Model model){
+		Products p = productsService.getProduct(productId);
+		model.addAttribute("product", p);
+		
+		return "orderConfirmation";
+	}
+	
+	@ModelAttribute("instOrder")
+	public Cart authentication()
+	{
+		return new Cart();
+	}
+	@RequestMapping("/orderConfirm")
+	public String addNewOrder(@ModelAttribute("instOrder") Cart cart , BindingResult result,Model model)
+	{
+		
+		 Authentication auth=SecurityContextHolder.getContext().getAuthentication();
+		 String name=auth.getName();
+		 cart.setQuantity(1);
+		 cart.setUsername(name);
+	     cartService.addTocart(cart);
+	     model.addAttribute("cart", cart);
+	   
+	   
+		return "thankCustomer";
 	}
 }

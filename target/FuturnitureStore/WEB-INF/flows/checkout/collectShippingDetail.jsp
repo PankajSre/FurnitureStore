@@ -56,4 +56,5 @@
         <button class="btn btn-default" name="_eventId_cancel">Cancel</button>
 
         </form:form>
+
 <%@ include file="/WEB-INF/view/footer.jsp" %>

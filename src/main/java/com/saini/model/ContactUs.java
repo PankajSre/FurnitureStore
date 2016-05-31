@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class ContactUs implements Serializable{
 
@@ -15,7 +18,9 @@ public class ContactUs implements Serializable{
 	@Column
 	@GeneratedValue
 	private int id;
+	@NotEmpty(message="This Filef can not be empty")
 	private String name,subject,email,message,company;
+	@Size(min=10,max=10,message="The Numbers will be 10")
 	private long mobile;
 	public int getId() {
 		return id;

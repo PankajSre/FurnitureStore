@@ -44,9 +44,10 @@ li,ul,body,input{margin:0; padding:0; list-style:none}
 	<section>
 	<div id="login-form">
 
-<input type="radio" checked id="login" name="switch" class="hide">
-<input type="radio" id="signup" name="switch" class="hide">
 
+            <c:if test="${not empty msg}">
+                <div class="msg">${msg}</div>
+            </c:if>
 <div>
 
 <ul class="form-header">
@@ -57,10 +58,6 @@ li,ul,body,input{margin:0; padding:0; list-style:none}
 
 <div class="section-out">
 <section class="login-section">
-
-            <c:if test="${not empty error}">
-                    <div class="error" style="color: #ff0000;">${error}</div>
-                </c:if>
 <div class="login">
 <form name="login" action="perform_login" method="post" >
  

@@ -26,12 +26,12 @@
 					<a href="<spring:url value="/products" />" class="btn btn-success">Back
 						
 					</a> 
-					<a href="<spring:url value="/cart?productId=${my.productId }" />" data-ng-click = "addToCart('${product.productId}')" class="btn btn-warning btn-large"> <span
-						class="glyphicon-shopping-cart glyphicon"> </span> Order Now
-					</a>
+					<a href="<spring:url value="/cart?productId=${product.productId }"/>" class="btn btn-warning btn-large" data-ng-click="addToCart('${product.productId}')">
+					<span class="glyphicon glyphicon-shopping-cart"></span> Order Now</a>
 				</p>
 			
 			</div>
 		</div>
 	</section>
+	
 	<%@ include file="footer.jsp" %>

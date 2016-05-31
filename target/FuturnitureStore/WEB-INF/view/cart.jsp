@@ -1,12 +1,8 @@
 <%@page import="com.saini.service.ProductsService"%>
 <%@page import="com.saini.model.Products"%>
 <%@ include file="header.jsp" %>
-<%
-     
-    
-%>
 
-	<section class="container" data-ng-app="cartApp">
+	<section class="container" data-ng-app="cartApp" style="height: 470px;">
 		<div data-ng-controller="cartController" data-ng-init="initCartId('${cartId}')">
 			<div>
 				<a class="btn btn-danger pull-left" data-ng-click="clearCart()"> <span
@@ -32,9 +28,9 @@
 				</tr>
 				<tr data-ng-repeat="item in product">
 					<td>${p.productId}</td>
-					<td>{{item.quantity}}</td>
-					<td>{{item.price}}</td>
-					<td>{{item.price}}</td>
+					<td></td>
+					<td></td>
+					<td></td>
 					<td><a href="#" class="label label-danger" data-ng-click="removeFromCart(item.product.productId)"> <span
 							class="glyphicon glyphicon-remove" /></span> Remove
 					</a></td>

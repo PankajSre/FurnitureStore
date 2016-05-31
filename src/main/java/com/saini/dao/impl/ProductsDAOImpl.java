@@ -30,6 +30,12 @@ public class ProductsDAOImpl implements ProductsDAO {
 		Session s=session.openSession();
 		Transaction t=s.beginTransaction();
 		Products pd=(Products)s.get(Products.class, new Integer(products.getProductId()));
+		pd.setProductId(products.getProductId());
+		pd.setName(products.getName());
+		pd.setGroupName(products.getGroupName());
+		pd.setPrice(products.getPrice());
+		pd.setQuantity(products.getQuantity());
+		pd.setDescription(products.getDescription());
 		s.saveOrUpdate(pd);
 		s.flush();
 		t.commit();

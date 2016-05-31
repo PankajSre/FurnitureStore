@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -20,7 +19,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/animate.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet">
-     <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.prettyPhoto.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.isotope.min.js"></script>
@@ -29,7 +28,7 @@
     <script src='${pageContext.request.contextPath}/<c:url value="/resource/js/controllers.js" />'></script>
     <script src="${pageContext.request.contextPath}/resource/js/scripts.js"></script>
     <script src='<c:url value="${pageContext.request.contextPath}/resource/js/controllers.js" />'></script>
-<script src='<c:url value="${pageContext.request.contextPath}/resource/js/scripts.js" />'></script>
+   <script src='<c:url value="${pageContext.request.contextPath}/resource/js/scripts.js" />'></script>
     <script>
  function formSubmit()
  {
@@ -45,7 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-xs-4">
-                        <div class="top-number"><p></i>  My Furniture Shop</p></div>
+                        <div class="top-number"><p>  My Furniture Shop</p></div>
                     </div>
                     <div class="col-sm-6 col-xs-8">
                       
@@ -83,7 +82,7 @@
                        <li><a href="${pageContext.request.contextPath}/products">All Products</a>
                      <c:if test="${pageContext.request.userPrincipal.name == 'Krishna'}">
                       <li><a href="${pageContext.request.contextPath}/prodRegistration">Add New Products</a></li></c:if>
-						 <li><a href="contact">Contact Us</a></li>
+						 <li><a href="${pageContext.request.contextPath}/contact">Contact Us</a></li>
 						</ul>
                        
 					<ul class="nav navbar-nav navbar-right">

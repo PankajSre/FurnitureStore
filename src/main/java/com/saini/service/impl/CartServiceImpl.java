@@ -1,5 +1,6 @@
 package com.saini.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,19 +9,27 @@ import com.saini.model.Cart;
 import com.saini.service.CartService;
 @Service
 @Transactional
-public class CartServiceImpl implements CartService {
+public class CartServiceImpl implements CartService{
 
+	@Autowired
 	private CartDAO cartDAO;
 	@Override
-	public Cart getCartById(int cartId) {
+	public void addTocart(Cart cart) {
 		
-		return cartDAO.getCartById(cartId);
+		cartDAO.addTocart(cart);
 	}
 
 	@Override
-	public void addCart(Cart cart) {
-		cartDAO.addCart(cart);
+	public void deleteFromCart(int cartId) {
 		
+		cartDAO.deleteFromCart(cartId);
+	}
+
+	@Override
+	public Cart getFromCart(int cartId) {
+		
+		cartDAO.getFromCart(cartId);
+		return null;
 	}
 
 }

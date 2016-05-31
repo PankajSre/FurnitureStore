@@ -19,7 +19,7 @@
 					<tr>
 						<td>Product Group:</td>
 						<td><form:input path="groupName" value="${product.groupName}"
-							disabled="true" /></td>
+						 /></td>
 					</tr>
 					<tr>
 						<td>Product Quantity:</td>

@@ -89,9 +89,7 @@ table tr:nth-child(even) {
 								<td><c:out value=" ${my.price}"></c:out></td>
 								<td><c:out value=" ${my.quantity}"></c:out></td>
 								<td><c:out value=" ${my.description}"></c:out></td>
-								<td><img
-									src="<c:url value='/resources/${my.productId}.png' />"
-									height="50" width=50 /></td>
+								<td><img src="<c:url value='/resources/${product.productId }.jpg' />" height="50" width="50" /></td>
 								<td><a
 									href="<spring:url value="/viewProduct?productId=${my.productId }" />"
 									class="btn btn-info"> <span

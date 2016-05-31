@@ -34,7 +34,7 @@
 
 
 		<logout logout-url="/perform_logout" delete-cookies="true"
-			logout-success-url="/login" />
+			logout-success-url="/login?logout" />
 <csrf disabled="true"/>
 	</http>
 	<authentication-manager>
